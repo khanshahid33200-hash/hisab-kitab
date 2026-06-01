@@ -57,6 +57,7 @@ export default function App() {
 
   // Sync dark theme class on documentElement
   useEffect(() => {
+    store.initSync();
     if (isDark) {
       document.documentElement.classList.add('dark-theme');
     } else {
