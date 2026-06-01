@@ -175,130 +175,16 @@ interface HisabKitabState {
   deleteUdhaar: (id: string) => void;
 }
 
-// Initial Mock Data to showcase the rich features instantly
-const mockPersonalTransactions: PersonalTransaction[] = [
-  { id: 'p1', amount: 45000, category: 'Salary', type: 'income', date: '2026-05-01', paymentMethod: 'Bank Transfer', notes: 'Monthly income credit', account: 'personal' },
-  { id: 'p2', amount: 12000, category: 'Rent', type: 'expense', date: '2026-05-02', paymentMethod: 'UPI', notes: 'Apartment rent payment', account: 'personal' },
-  { id: 'p3', amount: 1500, category: 'Groceries', type: 'expense', date: '2026-05-15', paymentMethod: 'Cash', notes: 'Weekly groceries checkout', account: 'personal' },
-  { id: 'p4', amount: 800, category: 'Dining Out', type: 'expense', date: '2026-05-20', paymentMethod: 'Card', notes: 'Dinner with team', account: 'personal' },
-  { id: 'p5', amount: 2500, category: 'Electricity Bill', type: 'expense', date: '2026-05-25', paymentMethod: 'UPI', notes: 'Electricity dues', account: 'personal' },
-  { id: 'p6', amount: 6500, category: 'Freelance Design', type: 'income', date: '2026-05-28', paymentMethod: 'UPI', notes: 'Freelance landing page redesign', account: 'business' }
-];
-
-const mockRoommateGroups: RoommateGroup[] = [
-  { id: 'g1', name: 'Flat 402 Roommates', members: ['Aman', 'Rahul', 'You', 'Vikram'] },
-  { id: 'g2', name: 'Manali Summer Trip', members: ['Aman', 'You', 'Sandeep', 'Neha'] }
-];
-
-const mockSharedExpenses: SharedExpense[] = [
-  {
-    id: 's1',
-    groupId: 'g1',
-    amount: 8000,
-    description: 'Electricity & Gas Bills',
-    paidBy: 'Aman',
-    date: '2026-05-10',
-    splitType: 'equal',
-    splits: { Aman: 2000, Rahul: 2000, You: 2000, Vikram: 2000 }
-  },
-  {
-    id: 's2',
-    groupId: 'g1',
-    amount: 1500,
-    description: 'High-speed WiFi Connection',
-    paidBy: 'You',
-    date: '2026-05-12',
-    splitType: 'equal',
-    splits: { Aman: 375, Rahul: 375, You: 375, Vikram: 375 }
-  },
-  {
-    id: 's3',
-    groupId: 'g1',
-    amount: 3200,
-    description: 'Monthly Groceries stock',
-    paidBy: 'Rahul',
-    date: '2026-05-18',
-    splitType: 'custom',
-    splits: { Aman: 1000, Rahul: 200, You: 1200, Vikram: 800 }
-  }
-];
-
-const mockWorkers: Worker[] = [
-  { id: 'w1', name: 'Rajesh Kumar', mobile: '9876543210', dailyWage: 600, joiningDate: '2026-04-10', site: 'Phase 2 Construction' },
-  { id: 'w2', name: 'Sohan Singh', mobile: '8765432109', dailyWage: 550, joiningDate: '2026-04-12', site: 'Phase 2 Construction' },
-  { id: 'w3', name: 'Manoj Yadav', mobile: '7654321098', dailyWage: 700, joiningDate: '2026-05-01', site: 'Villa Renovation' }
-];
-
-const mockAttendance: AttendanceRecord[] = [
-  // Rajesh Kumar Attendance
-  { id: '2026-05-25_w1', date: '2026-05-25', workerId: 'w1', status: 'present', overtimeHours: 2 },
-  { id: '2026-05-26_w1', date: '2026-05-26', workerId: 'w1', status: 'present', overtimeHours: 0 },
-  { id: '2026-05-27_w1', date: '2026-05-27', workerId: 'w1', status: 'halfday', overtimeHours: 0 },
-  { id: '2026-05-28_w1', date: '2026-05-28', workerId: 'w1', status: 'present', overtimeHours: 1 },
-  { id: '2026-05-29_w1', date: '2026-05-29', workerId: 'w1', status: 'absent', overtimeHours: 0 },
-  
-  // Sohan Singh Attendance
-  { id: '2026-05-25_w2', date: '2026-05-25', workerId: 'w2', status: 'present', overtimeHours: 0 },
-  { id: '2026-05-26_w2', date: '2026-05-26', workerId: 'w2', status: 'present', overtimeHours: 3 },
-  { id: '2026-05-27_w2', date: '2026-05-27', workerId: 'w2', status: 'present', overtimeHours: 0 },
-  { id: '2026-05-28_w2', date: '2026-05-28', workerId: 'w2', status: 'absent', overtimeHours: 0 },
-  { id: '2026-05-29_w2', date: '2026-05-29', workerId: 'w2', status: 'present', overtimeHours: 0 },
-
-  // Manoj Yadav Attendance
-  { id: '2026-05-25_w3', date: '2026-05-25', workerId: 'w3', status: 'present', overtimeHours: 0 },
-  { id: '2026-05-26_w3', date: '2026-05-26', workerId: 'w3', status: 'present', overtimeHours: 0 },
-  { id: '2026-05-27_w3', date: '2026-05-27', workerId: 'w3', status: 'present', overtimeHours: 0 },
-  { id: '2026-05-28_w3', date: '2026-05-28', workerId: 'w3', status: 'present', overtimeHours: 0 },
-  { id: '2026-05-29_w3', date: '2026-05-29', workerId: 'w3', status: 'present', overtimeHours: 2 }
-];
-
-const mockLabourPayments: LabourPayment[] = [
-  { id: 'lp1', workerId: 'w1', amount: 1500, type: 'advance', date: '2026-05-20', notes: 'Family emergency advance' },
-  { id: 'lp2', workerId: 'w2', amount: 1000, type: 'advance', date: '2026-05-24', notes: 'Festival advance' }
-];
-
-const mockCustomers: Customer[] = [
-  { id: 'c1', name: 'Verma Ji Kirana', mobile: '9988776655', address: 'Shop 12, Sector 15 Market', shopName: 'Verma Sweets' },
-  { id: 'c2', name: 'Amit Gupta (Regular)', mobile: '8877665544', address: 'Flat 101, Block B, Green Heights' },
-  { id: 'c3', name: 'Rakesh Hardware', mobile: '7766554433', address: 'Old Main Road Market' }
-];
-
-const mockLedgerTransactions: LedgerTransaction[] = [
-  { id: 'l1', customerId: 'c1', amount: 3500, type: 'credit', date: '2026-05-05', notes: 'Monthly groceries stock' },
-  { id: 'l2', customerId: 'c1', amount: 2000, type: 'debit', date: '2026-05-15', notes: 'Partial cash payment' },
-  { id: 'l3', customerId: 'c2', amount: 450, type: 'credit', date: '2026-05-22', notes: 'Lent custom toolkit' },
-  { id: 'l4', customerId: 'c3', amount: 8000, type: 'debit', date: '2026-05-10', notes: 'Raw construction pipe supplies' },
-  { id: 'l5', customerId: 'c3', amount: 5000, type: 'credit', date: '2026-05-25', notes: 'Online bank settlement' }
-];
-
-const mockUdhaarEntries: UdhaarEntry[] = [
-  {
-    id: 'u1',
-    type: 'lent',
-    personName: 'Ramesh Sharma',
-    amount: 15000,
-    interestRate: 2,
-    interestType: 'simple',
-    startDate: '2026-04-01',
-    dueDate: '2026-08-01',
-    notes: 'Personal credit support for child fees',
-    status: 'pending',
-    payments: [{ amount: 3000, date: '2026-05-01' }]
-  },
-  {
-    id: 'u2',
-    type: 'borrowed',
-    personName: 'Sunil Uncle',
-    amount: 50000,
-    interestRate: 1.5,
-    interestType: 'compound',
-    startDate: '2026-03-15',
-    dueDate: '2026-09-15',
-    notes: 'Borrowed for laptop purchase emergency',
-    status: 'pending',
-    payments: []
-  }
-];
+// Initial Data starts empty
+const initialPersonalTransactions: PersonalTransaction[] = [];
+const initialRoommateGroups: RoommateGroup[] = [];
+const initialSharedExpenses: SharedExpense[] = [];
+const initialWorkers: Worker[] = [];
+const initialAttendance: AttendanceRecord[] = [];
+const initialLabourPayments: LabourPayment[] = [];
+const initialCustomers: Customer[] = [];
+const initialLedgerTransactions: LedgerTransaction[] = [];
+const initialUdhaarEntries: UdhaarEntry[] = [];
 
 export const useHisabKitabStore = create<HisabKitabState>((set) => ({
   // Navigation & Preferences
@@ -307,23 +193,18 @@ export const useHisabKitabStore = create<HisabKitabState>((set) => ({
   theme: 'light',
   language: 'en',
   hideBalances: false,
-  userProfile: {
-    name: 'Gaurav Aggarwal',
-    email: 'gaurav.hisab@gmail.com',
-    mobile: '9898989898',
-    pin: '1234'
-  },
+  userProfile: null,
 
-  // State Data loaded with mocks
-  personalTransactions: mockPersonalTransactions,
-  roommateGroups: mockRoommateGroups,
-  sharedExpenses: mockSharedExpenses,
-  workers: mockWorkers,
-  attendance: mockAttendance,
-  labourPayments: mockLabourPayments,
-  customers: mockCustomers,
-  ledgerTransactions: mockLedgerTransactions,
-  udhaarEntries: mockUdhaarEntries,
+  // State Data
+  personalTransactions: initialPersonalTransactions,
+  roommateGroups: initialRoommateGroups,
+  sharedExpenses: initialSharedExpenses,
+  workers: initialWorkers,
+  attendance: initialAttendance,
+  labourPayments: initialLabourPayments,
+  customers: initialCustomers,
+  ledgerTransactions: initialLedgerTransactions,
+  udhaarEntries: initialUdhaarEntries,
 
   // Global preference actions
   setActiveModule: (module) => set({ activeModule: module }),

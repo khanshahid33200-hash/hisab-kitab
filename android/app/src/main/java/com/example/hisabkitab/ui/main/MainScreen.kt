@@ -167,47 +167,15 @@ fun HisabKitabAppContent(
   var hideBalances by remember { mutableStateOf(false) }
   
   // --- Global Application Stateful Data Registries ---
-  val personalTransactions = remember { mutableStateListOf<PersonalTx>(
-    PersonalTx(amount = 45000.0, type = "income", category = "Salary", notes = "Monthly salary", date = "2026-05-01", paymentMethod = "Bank", account = "personal"),
-    PersonalTx(amount = 12000.0, type = "expense", category = "Rent", notes = "House Rent", date = "2026-05-02", paymentMethod = "UPI", account = "personal"),
-    PersonalTx(amount = 1500.0, type = "expense", category = "Food", notes = "Weekly groceries", date = "2026-05-15", paymentMethod = "Cash", account = "personal"),
-    PersonalTx(amount = 6500.0, type = "income", category = "Freelance", notes = "Invoice design", date = "2026-05-28", paymentMethod = "UPI", account = "business")
-  )}
-  
-  val roommateGroups = remember { mutableStateListOf<RoommateGrp>(
-    RoommateGrp(id = "rg1", name = "Flat 402 Roommates", members = listOf("Aman", "Rahul", "You", "Vikram"))
-  )}
-  
-  val sharedExpenses = remember { mutableStateListOf<SharedBill>(
-    SharedBill(groupId = "rg1", amount = 8000.0, description = "Electricity Bill", paidBy = "Aman", date = "2026-05-10", splits = mapOf("Aman" to 2000.0, "Rahul" to 2000.0, "You" to 2000.0, "Vikram" to 2000.0))
-  )}
-  
-  val siteWorkers = remember { mutableStateListOf<SiteWorker>(
-    SiteWorker(id = "w1", name = "Rajesh Kumar", mobile = "9876543210", dailyWage = 600.0, site = "Phase 2 Construction", joiningDate = "2026-04-10")
-  )}
-  
-  val attendanceRecords = remember { mutableStateListOf<AttendanceRec>(
-    AttendanceRec(workerId = "w1", date = "2026-05-25", status = "present"),
-    AttendanceRec(workerId = "w1", date = "2026-05-26", status = "present"),
-    AttendanceRec(workerId = "w1", date = "2026-05-27", status = "halfday")
-  )}
-  
-  val labourPayments = remember { mutableStateListOf<LabourPmt>(
-    LabourPmt(workerId = "w1", amount = 1500.0, type = "advance", date = "2026-05-20", notes = "Emergency advance")
-  )}
-  
-  val customers = remember { mutableStateListOf<LedgerCust>(
-    LedgerCust(id = "c1", name = "Verma Ji Kirana", mobile = "9988776655", address = "Sector 15 Market")
-  )}
-  
-  val ledgerTransactions = remember { mutableStateListOf<LedgerTx>(
-    LedgerTx(customerId = "c1", amount = 3500.0, type = "credit", date = "2026-05-05", notes = "Grocery supply"),
-    LedgerTx(customerId = "c1", amount = 2000.0, type = "debit", date = "2026-05-15", notes = "UPI cash payment")
-  )}
-  
-  val udhaarEntries = remember { mutableStateListOf<UdhaarLending>(
-    UdhaarLending(id = "u1", type = "lent", personName = "Ramesh Sharma", amount = 15000.0, interestRate = 2.0, interestType = "simple", startDate = "2026-04-01", dueDate = "2026-08-01", notes = "School fee support")
-  )}
+  val personalTransactions = remember { mutableStateListOf<PersonalTx>() }
+  val roommateGroups = remember { mutableStateListOf<RoommateGrp>() }
+  val sharedExpenses = remember { mutableStateListOf<SharedBill>() }
+  val siteWorkers = remember { mutableStateListOf<SiteWorker>() }
+  val attendanceRecords = remember { mutableStateListOf<AttendanceRec>() }
+  val labourPayments = remember { mutableStateListOf<LabourPmt>() }
+  val customers = remember { mutableStateListOf<LedgerCust>() }
+  val ledgerTransactions = remember { mutableStateListOf<LedgerTx>() }
+  val udhaarEntries = remember { mutableStateListOf<UdhaarLending>() }
 
   // Core Math computations
   val stats = remember(personalTransactions, activeAccount, udhaarEntries, ledgerTransactions) {
